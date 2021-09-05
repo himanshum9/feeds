@@ -1,0 +1,54 @@
+{# templates/list/index.html.twig #} {% extends 'base.html.twig' %} {% block
+body %}
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card bg-light mb-3 mt-3">
+        <div class="card-body">
+          <div class="card-header">Feeds</div>
+		  {% if app.user != null %}
+			<table class="table border">
+            <tr>
+              <th>Title</th>
+              <th>Link</th>
+              
+            </tr>
+			
+			  {% for feeditem in rss %}
+				  <tr>
+					<td>{{ feeditem.title }}</td>
+					<td><a href="{{ feeditem.link }}" target="_blank" >{{ feeditem.link }}</a></td>
+					
+				  </tr>
+				<tr><td colspan="2" style="overflow:auto; max-width:100%;">
+				<table class="table border">
+				<tr>
+				  <th>Title</th>
+				  <th>Link</th>
+				  <th>Description</th>
+				  <th>Publish Date</th>
+				</tr>				
+				{% for item in feeditem.item %}
+				  <tr>
+					<td>{{ item.title }}</td>
+					<td><a href="{{ item.link }}" target="_blank" >{{ item.link }}</a></td>
+					<td>{{ item.description|raw }}</td>
+					<td>{{ item.pubDate }}</td>
+				  </tr>
+				  
+				{% endfor %}
+				</table>
+				</td></tr>
+			  {% endfor %}
+			  </table>
+          {% endif %}
+        </div>
+      </div>
+      {% if app.user == null %}
+      <a href="{{ path('app_login') }}" class="btn btn-info">
+        You need to login to see feeds >></a
+      >
+      {% endif %}
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{# templates/list/index.html.twig #} {% extends 'base.html.twig' %} {% block
+body %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card bg-light mb-3 mt-3">
+        <div class="card-body">
+          <div class="card-header">List of polling feed urls</div>
+          {% if app.user != null %}
+          <table class="table border">
+            <tr>
+              <th>ID</th>
+              <th>Url</th>
+              <th>Actions</th>
+            </tr>
+            {% for item in feedurls %}
+            <tr>
+              <td>{{ item.id }}</td>
+              <td>{{ item.url }}</td>
+			  <td><a href="{{path("url_feeds",{'id':item.id})}}" target="_blank">View Feeds</a>&nbsp;&nbsp;<a href="{{path("edit_url",{'id':item.id})}}">Edit</a>&nbsp;&nbsp;<a href="{{path("delete_url",{'id':item.id})}}">Delete</a></td>
+            </tr>
+            {% endfor %}
+          </table>
+          {% endif %}
+        </div>
+      </div>
+      {% if app.user == null %}
+      <a href="{{ path('app_login') }}" class="btn btn-info">
+        You need to login to see the url list >></a
+      >
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}
