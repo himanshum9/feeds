@@ -8,3 +8,5 @@ Feeds add URL functionality is also created.
 
 Project Setup:
 -New sql folder is created in which sql file is there which is required for the setup of this project.
+Test Login Credential:
+email:abcd@gmail.com    Password:qwerty
